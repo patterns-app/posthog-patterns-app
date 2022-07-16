@@ -1,0 +1,15 @@
+{
+  "name": "Patterns App",
+  "url": "https://github.com/patterns-app/posthog-patterns-app",
+  "description": "Send events data to Patterns App",
+  "main": "index.ts",
+  "posthogVersion": ">= 1.25.0",
+  "config": [
+    {
+      "key": "webhookUrl",
+      "name": "Patterns Webhook URL",
+      "type": "string",
+      "required": true
+    }
+  ]
+}
