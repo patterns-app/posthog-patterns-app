@@ -1,13 +1,21 @@
 # PostHog Patterns App
 
-Send event data to a webhook endpoint in a [patterns.app](https://patterns.app/) graph.
+Send PostHog event data to a webhook endpoint in a [patterns.app](https://patterns.app/) graph.
 
 ## Installation
 
+- Sign up for a free Patterns account ![here](https://www.patterns.app/beta)
 - Create a graph in Patterns and add a webhook node in it. ![Patterns Graph Webhook](patterns_graph_webhook.png)
 - Copy the webhook URL from the sidebar.
 - Install Patterns app from PostHog. Paste the URL in "Patterns Webhook URL" during app configuration.
 
+## Function
+
+- Ingest data from PostHog to Patterns 
+- Sync with other destinations or databases 
+- Generate models to measure customer health and churn risk 
+- Integrate with other data in Patterns and create a customer data platform 
+
 ## We'd love to connect
 
-- [Patterns Beta Access](https://www.patterns.app/beta)
+- [Create a Patterns Account](https://www.patterns.app/beta)
