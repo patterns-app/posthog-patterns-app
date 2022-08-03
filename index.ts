@@ -20,10 +20,10 @@ export async function setupPlugin({ config }: Meta<PatternsPluginInput>) {
 }
 
 // Plugin method to export events
-export async function exportEvents(
+export const exportEvents: Plugin<PatternsPluginInput>["exportEvents"] = async (
   events: PluginEvent[],
   { config }: Meta<PatternsPluginInput>
-) {
+) => {
   console.log(
     `Exporting events to Patterns webhook... ${events.length} events`
   );
