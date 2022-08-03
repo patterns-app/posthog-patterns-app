@@ -7,13 +7,14 @@ import {
 } from "@posthog/plugin-scaffold";
 import fetch, { Response } from "node-fetch";
 
-interface PatternsPluginInput extends PluginInput {
+export interface PatternsPluginInput extends PluginInput {
   config: {
     webhookUrl: string;
   };
 }
 
 // Plugin method that runs on plugin load
+//@ts-ignore
 export async function setupPlugin({ config }: Meta<PatternsPluginInput>) {
   console.log("Loaded Patterns app.");
 }
@@ -39,4 +40,4 @@ export const exportEvents: Plugin<PatternsPluginInput>["exportEvents"] = async (
     throw new RetryError(`Export events failed: ${JSON.stringify(data)}`);
   }
   console.log("Export Success.");
-};
+}
