@@ -13,8 +13,8 @@
     },
     {
       "key": "allowedEventTypes",
-      "name": "PostHog events to send to Patterns (comma-separated)",
-      "description": "$pageView, $pageLeave and others",
+      "name": "Event types to send to Patterns (comma-separated)",
+      "description": "Comma-separated like '$pageView, $pageLeave, $myEvent1'",
       "type": "string",
       "required": false
     }
