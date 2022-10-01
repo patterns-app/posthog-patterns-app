@@ -10,6 +10,13 @@
       "name": "Patterns Webhook URL",
       "type": "string",
       "required": true
+    },
+    {
+      "key": "allowedEventTypes",
+      "name": "PostHog events to send to Patterns (comma-separated)",
+      "description": "$pageView, $pageLeave and others",
+      "type": "string",
+      "required": false
     }
   ]
 }
