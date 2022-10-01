@@ -33,7 +33,7 @@ const filterEvents = (
     allowedEventTypesSet.has(event.event)
   );
 
-  console.log(`Allowed event types: `, allowedEventTypesSet);
+  console.log(`Allowed event types: `, allowedEventTypesSet.size);
   console.log(`Filtered out ${events.length - filteredEvents.length} events`);
 
   return filteredEvents;
