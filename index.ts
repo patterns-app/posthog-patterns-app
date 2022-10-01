@@ -33,9 +33,6 @@ const filterEvents = (
     allowedEventTypesSet.has(event.event)
   );
 
-  console.log(`Allowed event types: `, allowedEventTypesSet.size);
-  console.log(`Filtered out ${events.length - filteredEvents.length} events`);
-
   return filteredEvents;
 };
 
@@ -50,12 +47,12 @@ export const exportEvents: Plugin<PatternsPluginInput>["exportEvents"] = async (
   events: PluginEvent[],
   { config }: Meta<PatternsPluginInput>
 ) => {
-  console.log(
-    `Exporting events to Patterns webhook... ${events.length} events`
-  );
-
+  
   let filteredEvents = filterEvents(events, config);
-
+  console.log(
+    `Exporting events to Patterns webhook... ${filteredEvents.length}/${events.length} events`
+  );
+  
   let response: Response;
   response = await fetch(config.webhookUrl, {
     method: "POST",
