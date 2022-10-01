@@ -7,11 +7,34 @@ import {
 } from "@posthog/plugin-scaffold";
 import fetch, { Response } from "node-fetch";
 
+type PatternsInputs = {
+  webhookUrl: string;
+  allowedEventTypes: string;
+};
+
 export interface PatternsPluginInput extends PluginInput {
-  config: {
-    webhookUrl: string;
-  };
+  config: PatternsInputs;
 }
+
+const filterEvents = (
+  events: PluginEvent[],
+  config: PatternsInputs
+): PluginEvent[] => {
+  if (!config.allowedEventTypes) {
+    return events;
+  }
+
+  let allowedEventTypes = config.allowedEventTypes.split(",");
+  allowedEventTypes = allowedEventTypes.map((eventType) => eventType.trim());
+
+  const allowedEventTypesSet = new Set(allowedEventTypes);
+
+  let filteredEvents = events.filter((event) =>
+    allowedEventTypesSet.has(event.event)
+  );
+
+  return filteredEvents;
+};
 
 // Plugin method that runs on plugin load
 //@ts-ignore
@@ -28,11 +51,13 @@ export const exportEvents: Plugin<PatternsPluginInput>["exportEvents"] = async (
     `Exporting events to Patterns webhook... ${events.length} events`
   );
 
+  let filteredEvents = filterEvents(events, config);
+
   let response: Response;
   response = await fetch(config.webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(events),
+    body: JSON.stringify(filteredEvents),
   });
 
   if (response.status != 200) {
@@ -40,4 +65,4 @@ export const exportEvents: Plugin<PatternsPluginInput>["exportEvents"] = async (
     throw new RetryError(`Export events failed: ${JSON.stringify(data)}`);
   }
   console.log("Export Success.");
-}
+};
