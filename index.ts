@@ -53,6 +53,10 @@ export const exportEvents: Plugin<PatternsPluginInput>["exportEvents"] = async (
     `Exporting events to Patterns webhook... ${filteredEvents.length}/${events.length} events`
   );
   
+  if (!filteredEvents.length) {
+    return;
+  }
+  
   let response: Response;
   response = await fetch(config.webhookUrl, {
     method: "POST",
